@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+
+</head>
+<body>
+    <form method="post"
+      ENCTYPE="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Post Photo</button>
+    </form>
+    <h1>Instagram</h1>
+
+    <div class="main-container">
+        {% for photo in photos %}
+    <div class="image-frame">
+        <img src="{{ photo.image.url }}">
+        <p>posted on {{ photo.published_date }}</p>
+    </div>
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>
